@@ -14,13 +14,8 @@ class SaleOrder(models.Model):
     # se crea la restriccion que lee el valor del campo tipo_cotizacion
     @api.constrains('tipo_cotizacion')
     def _check_invoice_due(self):
-        # Verifica si el cliente cuenta con facturas vencidas al confirmar la cotizacion
         for order in self:
             if order.tipo_cotizacion == 'promocion':
-                overdue_invoices = self.env['account.invoice'].search([
-                    ('partner_id', '=', order.partner_id.id),
-                    ('state', '=', 'open'),
-                    ('date_due', '<', fields.Date.today())
-                ])
-                if overdue_invoices:
-                    raise UserError('No se puede confirmar una cotización de "Promoción" si el cliente tiene facturas vencidas.')
+                # Se controla por la fecha de expiracion
+                if order.validity_date and order.validity_date < fields.Date.today():
+                    raise UserError('No se puede confirmar una cotización de "Promoción" si la cotización ha vencido.')
