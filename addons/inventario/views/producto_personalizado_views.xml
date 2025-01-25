@@ -1,6 +1,12 @@
 <odoo>
     <data>
 
+        <record id="action_productos_personalizados" model="ir.actions.act_window">
+            <field name="name">Productos Personalizados</field>
+            <field name="res_model">producto.personalizado</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
         <record id="view_producto_personalizado_tree" model="ir.ui.view">
             <field name="name">producto.personalizado.tree</field>
             <field name="model">producto.personalizado</field>
@@ -30,13 +36,10 @@
             </field>
         </record>
         
-        <record id="action_productos_personalizados" model="ir.actions.act_window">
-            <field name="name">Productos Personalizados</field>
-            <field name="res_model">producto.personalizado</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
-        <menuitem id="menu_productos_personalizados" name="Productos Personalizados" parent="stock.menu_stock" action="action_productos_personalizados"/>
+        <menuitem id="menu_productos_personalizados" 
+            name="Productos Personalizados" 
+            parent="stock.menu_stock_root" 
+            action="action_productos_personalizados"/>
     
     </data>
 
