@@ -13,6 +13,7 @@
             <field name="arch" type="xml">
                 <tree string="Productos Personalizados">
                     <field name="name"/>
+                    <field name="description"/>
                     <field name="price"/>
                     <field name="stock"/>
                 </tree>
